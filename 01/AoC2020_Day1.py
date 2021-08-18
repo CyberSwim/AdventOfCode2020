@@ -11,8 +11,8 @@ for item in inputfile:
 
 numbers.sort()
 
-# Binary search
-def binarySearch (number_list, target_sum):
+# Search for answers
+def numberFinder (number_list, target_sum):
     
     # will remove previously searched values without modifying list
     search_adjustment = 0
@@ -28,7 +28,7 @@ def binarySearch (number_list, target_sum):
         high_value = len(number_list) - 1
         mid_value = int((low_value + high_value) / 2)
 
-        # the binary search
+        # binary search
         while (low_value <= high_value):
             test_number = number_list[mid_value]
 
@@ -47,6 +47,24 @@ def binarySearch (number_list, target_sum):
             if (low_value == mid_value or mid_value == high_value):
                 search_adjustment += 1
                 low_value = high_value + 1
-                
-result = binarySearch(numbers, int(2020))
-print ("Number one: " + str(result[0]) + "\nNumber two: " + str(result[1]) + "\n\nFinal answer: " + str(result[0] * result[1]))
+    
+    return "null"
+
+
+
+    
+part_one_result = numberFinder(numbers, int(2020))
+
+for number in numbers:
+    part_two_result = numberFinder(numbers, (2020 - number))
+    if (part_two_result == "null"):
+        continue
+    else:
+        part_two_result.append(number)
+        break
+
+
+print ("Part One\nNumbers: " + str(part_one_result))
+print ("Final Answer: " + str(part_one_result[0] * part_one_result[1]))
+print ("Part Two\nNumbers: " + str(part_two_result))
+print ("Final Answer: " + str(part_two_result[0] * part_two_result[1] * part_two_result [2]))
